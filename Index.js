@@ -63,4 +63,7 @@ class Hangman {
   }
 }
 
-const game = new Hangman("hello");
+function main() {
+  const game = new Hangman("hello");
+}
+main();
