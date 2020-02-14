@@ -5,7 +5,17 @@ module.exports = class Word {
     this.word = word;
     this.letterArray = this.word.split("");
     this.letterObjArray = this.makeLtrObjs();
-    this.length = word.length;
+    this.length = this.word.length;
+    this.falseNum = this.falseCount();
+  }
+  falseCount() {
+    let falseCount = 0;
+    this.letterObjArray.forEach(function(letter) {
+      if (letter.guessed === false) {
+        falseCount++;
+      }
+    });
+    return falseCount;
   }
   makeLtrObjs() {
     let wrdArray = [];

@@ -5,7 +5,7 @@ class Hangman {
   constructor(word) {
     this.guessedArray = []; //array of letters that have been guessed
     this.word = new Word(word);
-    this.trueCount = 0;
+    this.chances = 8;
     this.gameOver = false;
     this.turn();
   }
@@ -28,7 +28,15 @@ class Hangman {
       this.gameOver = true;
       console.log("You Win");
     } else {
-      console.log("Not won yet");
+      // console.log(`Chances remaining: ${this.chances}`)
+
+      this.chances--;
+      if (this.chances > 0) {
+        console.log(`Chances remaining: ${this.chances}`);
+      } else {
+        this.gameOver = true;
+        console.log("You Were Hanged. Game over!");
+      }
     }
   }
   async turn() {
@@ -50,4 +58,3 @@ class Hangman {
 }
 
 const game = new Hangman("hello");
-// console.log(game.word);
