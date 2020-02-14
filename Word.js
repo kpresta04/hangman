@@ -1,16 +1,16 @@
 const Letter = require("./Letter.js");
 
-class Word {
+module.exports = class Word {
   constructor(word) {
     this.word = word;
-    this.letterObjArray = this.word.split("");
+    this.letterArray = this.word.split("");
     this.letterObjArray = this.makeLtrObjs();
     this.length = word.length;
   }
   makeLtrObjs() {
     let wrdArray = [];
     // console.log(this);
-    this.letterObjArray.forEach(function(element) {
+    this.letterArray.forEach(function(element) {
       //   console.log(element);
       let ltr = new Letter(element);
       wrdArray.push(ltr);
@@ -25,11 +25,17 @@ class Word {
     });
     console.log(printStr);
   }
-}
+  guess(char) {
+    this.letterObjArray.forEach(function(letter) {
+      letter.checkGuess(char);
+    });
+  }
+};
 // }
 
-const hello = new Word("hello");
+// const hello = new Word("hello");
 // console.log(hello.letterObjArray);
-hello.displayWord();
+// hello.guess("l");
+// hello.displayWord();
 
 // console.log(hello.makeLtrObjs("hello"));

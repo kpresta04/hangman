@@ -4,17 +4,17 @@ module.exports = class Letter {
     this.guessed = false;
   }
 
-  displayVal = function() {
+  displayVal() {
     if (this.guessed === false) {
       return "_";
     } else {
       return this.letter;
     }
-  };
+  }
 
-  checkGuess = function(char) {
+  checkGuess(char) {
     if (char === this.letter) {
       this.guessed = true;
     }
-  };
+  }
 };
