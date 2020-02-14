@@ -28,9 +28,9 @@ class Hangman {
       this.gameOver = true;
       console.log("You Win");
     } else {
-      // console.log(`Chances remaining: ${this.chances}`)
+      // console.log(`Chances remaining: ${this.chances}`);
 
-      this.chances--;
+      // this.chances--;
       if (this.chances > 0) {
         console.log(`Chances remaining: ${this.chances}`);
       } else {
@@ -41,15 +41,21 @@ class Hangman {
   }
   async turn() {
     while (!this.gameOver) {
-      this.word.displayWord();
       if (this.guessedArray.length > 0) {
         console.log(`Guessed so far: ${this.guessedArray}`);
       }
+      this.word.displayWord();
 
       let guess = await this.getUserGuess();
       guess = guess.toString();
       this.guessedArray.push(guess);
+      let fcount = this.word.falseCount();
+      // console.log(`Fcount: ${fcount}`);
       this.word.guess(guess);
+      if (fcount === this.word.falseCount()) {
+        this.chances--;
+      }
+      // console.log(this.word.falseCount());
 
       this.word.displayWord();
       this.checkVictory();
